@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymLeaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>New Post</title>
+    <style>
+        input[type=submit] {
+          width: 100%;
+          background-color: #04AA6D;
+          color: white;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+        input[type=text]{
+            width: 100%;
+        }
+        textarea{
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+
+<div align="left">
+    <div align="center" style="background-color:khaki">
+        <h1>New/Edit</h1>
+    </div>
+    <th:block th:switch="${caseId}">
+        <div th:case="'save'" align="left">
+            <form action="#" th:action="@{/savepost}" th:object="${post}" method="POST">
+                <input type="hidden" th:field="*{id}">
+                <!--input type="text" th:field="*{userName}" placeholder="user name" size="150"  required><br><br>
+                <input type="text" th:field="*{author}" placeholder="author's name" size="150" required><br><br-->
+                <input type="text" th:field="*{title}" placeholder="title of the post" size="150" required><br><br>
+                <input type="text" th:name="tag" placeholder="tags" size="150" required><br><br>
+                <input type="text" th:field="*{excerpt}" placeholder="post's excerpt" size="170" required><br><br>
+                <textarea rows="30" cols="170" th:field="*{content}" required></textarea><br><br>
+                <input type="submit" value="publish">
+            </form>
+        </div>
+        <div th:case="'update'" align="left">
+            <form action="#" th:action="@{/user/updatepost/{id}(id=${post.id})}" th:object="${post}" method="POST">
+                <input type="hidden" th:field="*{id}">
+                <!--input type="text" th:field="*{userName}" placeholder="user name" size="150"  required><br><br-->
+                <!--input type="text" th:field="*{author}" placeholder="author's name" size="150" required><br><br-->
+                <input type="text" th:field="*{title}" placeholder="title of the post" size="150" required><br><br>
+                <input type="text" th:field="*{excerpt}" placeholder="post's excerpt" size="170" required><br><br>
+                <textarea rows="30" cols="170" th:field="*{content}" required></textarea><br><br>
+                <input type="submit" value="update">
+            </form>
+        </div>
+    </th:block>
+</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymLeaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Filter</title>
+</head>
+<body>
+<div>
+    <form action="#" th:action="@{/filtering}" method="get">
+
+        <lable>Authors</lable>
+        <ul>
+            <li th:each="author:${authors}">
+                <input type="checkbox" th:value="${author}" name="authorList"/>
+                <label th:text="${author}"></label>
+            </li>
+        </ul>
+        <lable>Tags</lable>
+        <ul>
+            <li th:each="tag:${tags}">
+                <input type="checkbox" th:value="${tag}" name="tagsList"/>
+                <label th:text="${tag}"></label>
+            </li>
+        </ul>
+        <lable>Published Time</lable>
+        <ul>
+            <li th:each="time:${time}">
+                <input type="checkbox" th:value="${time}" name="time"/>
+                <label th:text="${time}"></label>
+            </li>
+        </ul>
+        <input type="submit" value="Apply">
+    </form>
+</div>
+</body>
+</html>

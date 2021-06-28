@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymLeaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<div align="left" style="background-color:khaki" class="some">
+    <h1> Search/Filter Results</h1>
+</div>
+<div th:each="post : ${listOfPost}">
+    <h2><a th:text="${post.title}" th:href="@{/blog/{id}(id=${post.id})}"></a></h2>
+    <h5 th:text="${post.publishedAt}"></h5>
+    <h5 th:text="${post.author}"></h5>
+    <p th:text="${post.excerpt}"></p>
+</div>
+<br>
+</body>
+</html>

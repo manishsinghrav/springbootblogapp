@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymLeaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Post</title>
+</head>
+<body>
+<div th:align="right" style="background-color:khaki">
+    <br>
+    <form th:action="@{/user/update/{id}(id=${post.id})}">
+        <input type="submit" value="Edit" size="5">
+    </form>
+    <br>
+    <form th:action="@{/user/deletepost/{id}(id=${post.id})}">
+        <input type="submit" value="Delete" size="5">
+    </form>
+</div>
+<p th:align="left">
+<h1 th:text="${post.title}" th:align="center"></h1>
+<p th:text="${post.publishedAt}">
+<p th:text="${post.author}" th:align="left"/> </p><br>
+
+<h2>Tags</h2>
+<div th:each="tag : ${post.tags}">
+    <p th:text="${tag.name}"/>
+</div>
+<br>
+
+
+<h2>Content</h2><br>
+<p th:text="${post.content}"></p><br>
+</div><br>
+<div th:align="center">Comments</div>
+<br>
+
+<form action="#" th:action="@{/save/{id}(id=${caseId})}" th:object="${comment}" th:method="get">
+
+    <input type="text" th:field="*{name}" placeholder="Name" size="50" required><br><br>
+    <input type="text" th:field="*{email}" placeholder="Email Id" size="50" required><br><br>
+    <textarea rows="10" cols="111" th:field="*{comment}"></textarea><br><br>
+    <div th:align="center">
+        <input type="submit" value="save comment" size="60">
+    </div>
+</form>
+
+<div th:each="com : ${listOfComment}">
+    <h2 th:text="${com.name}"></h2>
+    <h5 th:text="${com.createdAt}"></h5>
+    <h5 th:text="${com.comment}"></h5>
+
+    <form action="#" th:action="@{/user/deleteComment/{commentId}(commentId=${com.id})}" th:method="post">
+        <input type="submit" value="delete comment">
+    </form>
+    <form action="#" th:action="@{/user/updateCommentForm/{commentId}(commentId=${com.id})}" th:method="get">
+        <input type="submit" value="update comment">
+    </form>
+</div>
+<br>
+</body>
+</html>

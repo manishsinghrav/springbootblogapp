@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymLeaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<div align="left" style="background-color:khaki" class="some">
+    <h1>Blog Posts</h1>
+    <form action="#" th:action="@{/logout?logout}" >
+        <input type="submit" value="logout">
+    </form><br>
+    <form th:action="@{/user/newpost}">
+        <input type="submit" value="new post">
+    </form>
+    <br>
+    <div th:align="right">
+        <form action="#" th:action="@{/search}" th:method="get">
+            <input type="text" th:name="search" placeholder="search" required>&nbsp;
+            <input type="submit" value="search">
+        </form>
+        <br>
+
+
+        <form action="#" th:action="@{/filter}" th:method="post">
+            <input type="submit" value="filter">
+        </form><br>
+        <a th:href="@{/users/register}">Register</a>
+
+
+    </div>
+    <a th:href="@{'/page/' + ${currentPage} + '?sortField=author&sortDirection='+${reverseSortDirection}}">Sort by
+        author</a>
+    <a th:href="@{'/page/' + ${currentPage} + '?sortField=title&sortDirection='+${reverseSortDirection}}">Sort by
+        title</a>
+    <a th:href="@{'/page/' + ${currentPage} + '?sortField=publishedAt&sortDirection='+${reverseSortDirection}}">Sort by
+        published date</a>
+</div>
+<div th:each="post : ${listOfPost}">
+    <h2><a th:text="${post.title}" th:href="@{/blog/{id}(id=${post.id})}"></a></h2>
+    <h5 th:text="${post.publishedAt}"></h5>
+    <h5 th:text="${post.author}"></h5>
+    <p th:text="${post.excerpt}"></p>
+</div>
+<br>
+
+<div th:if="${totalPages > 1}">
+         <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+            <a th:if="${currentPage !=i}"
+               th:href="@{'/page/'+ ${i} + '?sortField=' + ${sortField}+ '&sortDirection=' + ${sortDirection}}">[[${i}]]</a>
+            <span th:unless="${currentPage !=i}">[[${i}]]</span> &nbsp;&nbsp;
+        </span>
+    <a th:if="${currentPage < totalPages}"
+       th:href="@{'/page/' +  ${currentPage + 1}+'?sortField=' + ${sortField}+ '&sortDirection=' + ${sortDirection}}">next</a>
+    <span th:unless="${currentPage < totalPages}">Last</span>
+
+</div>
+</div>
+</div>
+</body>
+</html>
