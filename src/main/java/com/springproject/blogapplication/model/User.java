@@ -2,7 +2,7 @@ package com.springproject.blogapplication.model;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "users")
 @Table(name = "users")
 public class User {
 
