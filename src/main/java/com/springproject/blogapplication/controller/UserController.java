@@ -30,7 +30,7 @@ public class UserController {
 
     @PostMapping("/register")
     public String saveRegisterInfo(@ModelAttribute("user") User user){
-        user.setRole("ROLE_ADMIN");
+        user.setRole("ROLE_AUTHOR");
         user.setPassWord(passwordEncoder.encode(user.getPassWord()));
         userService.saveUser(user);
         return "redirect:/";
