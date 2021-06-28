@@ -203,7 +203,7 @@ public class PostController {
     public String filteringSearch(@RequestParam(value = "authorList", required = false, defaultValue = "")
                                           String[] authorList, Model model,
                                   @RequestParam(value = "tagsList", required = false, defaultValue = "")
-                                          String[] tagList, @RequestParam(value = "time", required = false, defaultValue = "") String[] publishedAt) {
+                                          String[] tagList, @RequestParam(value = "time", required = false, defaultValue = "") Timestamp[] publishedAt) {
         List<Post> posts = new ArrayList<>();
         Set<Post> setOfPost = new HashSet<>();
 
@@ -214,7 +214,7 @@ public class PostController {
             posts.addAll(postService.getPostByTagName(name));
         }
 
-        for (String time : publishedAt) {
+        for (Timestamp time : publishedAt) {
             posts.addAll(postService.getPostByPublishedAt(time));
         }
 

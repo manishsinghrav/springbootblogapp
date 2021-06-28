@@ -3,6 +3,7 @@ package com.springproject.blogapplication.service;
 import com.springproject.blogapplication.model.Post;
 import org.springframework.data.domain.Page;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public interface PostService {
@@ -15,6 +16,6 @@ public interface PostService {
     Page<Post> findPaginated( Integer pageNo, Integer pageSize, String sortingField, String sortingOrder);
     public List<Post> getPostByAuthor(String name);
     public List<Post> getPostByTagName(String tag);
-    public List<Post> getPostByPublishedAt(String publishedAt);
+    public List<Post> getPostByPublishedAt(Timestamp publishedAt);
     public List<Post> findAllSearchMatchByKeyword( String keyWord);
 }

@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Transactional
@@ -25,6 +26,6 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
     public List<Post>findPostByName(@Param("name") String name);
 
     @Query(value = "SELECT * FROM posts WHERE published_at =:publishedAt ",nativeQuery = true)
-    public List<Post>findPostByPublishedAt(@Param("publishedAt") String publishedAt);
+    public List<Post>findPostByPublishedAt(@Param("publishedAt") Timestamp publishedAt);
 
 }

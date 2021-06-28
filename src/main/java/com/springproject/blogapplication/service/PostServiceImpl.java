@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -75,7 +76,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> getPostByPublishedAt(String publishedAt) {
+    public List<Post> getPostByPublishedAt(Timestamp publishedAt) {
 
         return postRepository.findPostByPublishedAt(publishedAt);
     }
