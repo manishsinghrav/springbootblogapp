@@ -8,21 +8,21 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class TagServiceImpl implements TagService{
+public class TagServiceImpl implements TagService {
 
     @Autowired
-    private  TagRepository tagRepository;
+    private TagRepository tagRepository;
 
     @Override
     public void saveTag(String name) {
-        Tag tag=new Tag();
+        Tag tag = new Tag();
         tag.setName(name);
         tagRepository.save(tag);
     }
 
     @Override
     public List<Tag> getAllTags() {
-       return  tagRepository.findAll();
+        return tagRepository.findAll();
     }
 
 }

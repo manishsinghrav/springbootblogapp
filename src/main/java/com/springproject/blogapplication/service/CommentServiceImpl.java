@@ -16,9 +16,9 @@ public class CommentServiceImpl implements CommentService {
 
     @Autowired
     private CommentRepository commentRepository;
+
     @Autowired
     private PostRepository postRepository;
-
 
     @Override
     public List<Comment> getCommentByPostId(Integer id) {

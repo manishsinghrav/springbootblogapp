@@ -15,6 +15,7 @@ import java.util.Optional;
 
 @Service
 public class PostServiceImpl implements PostService {
+
     @Autowired
     private PostRepository postRepository;
 
@@ -66,26 +67,21 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<Post> getPostByAuthor(String name) {
-        return  postRepository.findPostByName(name);
+        return postRepository.findPostByName(name);
     }
 
     @Override
     public List<Post> getPostByTagName(String tag) {
-
         return postRepository.findPostByTag(tag);
     }
 
     @Override
     public List<Post> getPostByPublishedAt(Timestamp publishedAt) {
-
         return postRepository.findPostByPublishedAt(publishedAt);
     }
 
     @Override
     public List<Post> findAllSearchMatchByKeyword(String keyWord) {
-
         return postRepository.findAllPostMatchBySearch(keyWord);
     }
-
-
 }
