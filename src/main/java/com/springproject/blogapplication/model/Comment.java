@@ -5,7 +5,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-@Entity
+@Entity(name = "comments")
 @Table(name = "comments")
 public class Comment {
 
@@ -19,8 +19,8 @@ public class Comment {
     @Column(name = "email")
     private String email;
 
-    @Lob
-    @Column(name = "comment")
+
+    @Column(columnDefinition = "text", name = "comment")
     private String comment;
 
     @CreationTimestamp

@@ -75,15 +75,19 @@ public class PostController {
     @GetMapping("/blog/{id}")
     public String viewPost(@PathVariable(value = "id") Integer id, Model model) {
         Post post = postService.getPostById(id);
-
         List<Comment> comments = commentService.getCommentByPostId(id);
+
         Comment comment = new Comment();
-
-        model.addAttribute("caseId", id);
-        model.addAttribute("comment", comment);
-        model.addAttribute("listOfComment", comments);
-        model.addAttribute("post", post);
-
+        if (comments.size() == 0) {
+            model.addAttribute("caseId", id);
+            model.addAttribute("comment", comment);
+            model.addAttribute("post", post);
+        } else {
+            model.addAttribute("caseId", id);
+            model.addAttribute("comment", comment);
+            model.addAttribute("listOfComment", comments);
+            model.addAttribute("post", post);
+        }
         return "post";
     }
 
@@ -108,8 +112,9 @@ public class PostController {
         if (post.getAuthor().equals(user.getUserName()) || user.getRole().equals("ROLE_ADMIN")) {
             postService.deletePost(id);
             commentService.deleteCommentByPostId(id);
+            return "redirect:/";
         }
-        return "redirect:/";
+        return "redirect:/blog/"+id;
     }
 
     @PostMapping("/user/updatepost/{id}")

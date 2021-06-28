@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
+@Entity(name = "tags")
 @Table(name = "tags")
 public class Tag {
 

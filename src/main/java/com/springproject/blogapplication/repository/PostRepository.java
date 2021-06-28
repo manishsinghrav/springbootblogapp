@@ -17,8 +17,8 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
             " OR p.content LIKE %?1% ")
     public List<Post> findAllPostMatchBySearch(String keyWord);
 
-    @Query(value ="select * from blog.posts where id in (select post_id from blog.post_tags where tag_id in" +
-            " (select id from blog.tags where name=?1))",nativeQuery = true)
+    @Query(value ="select * from posts where id in (select post_id from post_tags where tag_id in" +
+            " (select id from tags where name=?1))",nativeQuery = true)
     public List<Post> findPostByTag(String tag);
     
     @Query("SELECT p FROM posts p WHERE p.author=:name")
