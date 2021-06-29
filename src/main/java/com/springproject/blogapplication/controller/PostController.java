@@ -34,6 +34,11 @@ public class PostController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/posts")
+    public List<Post> getPosts(){
+        return postService.getAllPost();
+    }
+
     @GetMapping("/")
     public String home(Model model) {
         return paginatedPage(1, "author", "asc", model);

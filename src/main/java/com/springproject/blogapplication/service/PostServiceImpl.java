@@ -32,8 +32,8 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Post getPostById(Integer id) {
-        Post post1 = postRepository.findById(id).get();
-        System.out.println(post1.getTags());
+        Post postData = postRepository.findById(id).get();
+        System.out.println(postData.getTags());
 
         Optional<Post> optional = postRepository.findById(id);
         Post post = null;

@@ -14,8 +14,8 @@ import java.util.List;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Integer> {
 
-    @Query("SELECT p FROM posts p WHERE p.author LIKE %?1% OR p.title LIKE %?1% OR p.excerpt LIKE %?1%" +
-            " OR p.content LIKE %?1% ")
+    @Query(value = "SELECT * FROM posts  WHERE author LIKE %?1% OR title LIKE %?1% OR excerpt LIKE %?1%" +
+            " OR content LIKE %?1% ",nativeQuery = true)
     public List<Post> findAllPostMatchBySearch(String keyWord);
 
     @Query(value ="select * from posts where id in (select post_id from post_tags where tag_id in" +
